@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XYZ Restoran</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: #d9230f;" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/Home/Index">XYZ Restoran</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/Home/Index">
+                                Anasayfa
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+
+                        @* <li class="nav-item">
+                            <a class="nav-link" href="#">Menü</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Rezervasyon</a>
+                        </li> *@
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About/Index">Hakkımızda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/ShoppingCart">
+                                <span class="badge text-bg-info" style="background-color: white !important; color: #d9230f !important;">@(ViewData["CartItemCount"])</span>
+                                <i class="bi bi-cart text-white"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    @*
+                    <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Ara">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Ara</button>
+                    </form>
+                    *@
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+                @RenderBody()
+        </div>
+    </header>
+   
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - RestaurantApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿@using OnlineRestaurantProject.Models.Domain
+@model List<Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@Html.ActionLink("Yeni ürün kategorisi ekle", "Add", "Category", null, new { @class = "btn btn-primary my-3" })
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Kategorileri</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
+
+</head>
+<body>
+
+
+    <div class="card">
+        <div class="card-header">
+            Ürün Kategorileri
+        </div>
+        <div class="card-body">
+            <table class="table table-striped" id="AllCategories">
+                <thead>
+                    <tr>
+                        <th>Sıra No</th>
+                        <th>Kategori Adı</th>
+                        <th>İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td>@(i + 1)</td>
+                            <td>@Model[i].Name</td>
+                            <td>
+                                @Html.ActionLink("Kategoriyi Güncelle", "Update", "Category", new { id = Model[i].Id }, new { @class = "btn btn-warning" })
+                                <button class="btn btn-danger" onclick="confirmDelete('@Model[i].Id')">Kategoriyi Sil</button>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+
+    <script type="text/javascript">
+        var table = new DataTable('#AllCategories', {
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/tr.json',
+            },
+        });
+
+    </script>
+
+    <script>
+
+
+        function confirmDelete(CategoryId) {
+            Swal.fire({
+                title: 'Emin misiniz?',
+                text: 'Bu kategoriyi silmek istediğinizden emin misiniz?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, sil!',
+                cancelButtonText: 'İptal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/Category/Delete/' + CategoryId;
+                }
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7a81f2aa9a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>

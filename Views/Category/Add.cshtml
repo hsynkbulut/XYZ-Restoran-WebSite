@@ -1,0 +1,35 @@
+﻿@using OnlineRestaurantProject.Models.DTO
+@model CreateOrEditCategoryDto
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Ürün Kategorisi Ekleme Sayfası
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Category", FormMethod.Post))
+        {
+            <div class="text-danger" asp-validation-summary="All">
+            </div>
+            <div class="my-3">
+                <label class="form-label" for="CategoryName">Kategori Adı</label>
+
+                @Html.TextBoxFor(x => x.CategoryName, "", new { @class = "form-control", placeHolder = "Kategori adını giriniz" })
+
+            </div>
+
+            <button type="submit" class="btn btn-success my-3">
+                Kaydet
+            </button>
+        }
+    </div>
+</div>
+
+
+
+
+

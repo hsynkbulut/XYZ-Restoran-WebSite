@@ -1,0 +1,117 @@
+﻿@using OnlineRestaurantProject.Models.DTO
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model HomeIndexViewModel
+
+<!--Carousel Slider-->
+<div id="carouselExampleDark" class="carousel carousel slide" style="border-radius:5px !important;">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner h-100">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="~/image/pizza-bg.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="color:White; font-weight: bold;">Pizza: Lezzetin Sembolü</h5>
+                <p style="color:White;">Taze malzemelerle hazırlanan nefis pizza çeşitlerimizle damağınızı şımartın. Her dilimde ayrı bir lezzet, her ısırıkta keyif bulacağınız özel tarifler.</p>
+            </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="~/image/makarna-bg.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="color:White; font-weight: bold;">Makarna: İtalyan Lezzet Ustalığı</h5>
+                <p style="color:White;">İtalyan mutfağının en sevilen lezzetleri, çeşit çeşit makarna çeşitlerimizde buluşuyor. İnce soslarla harmanlanmış, taze makarnalarla enfes tatlar...</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/image/hamburger-bg.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5 style="color:White; font-weight: bold;">Hamburger: Gerçek Tadın İzleri</h5>
+                <p style="color:White;">Özenle seçilmiş etlerden, leziz soslarla hazırlanan hamburgerlerimizle doyumsuz bir lezzet yolculuğuna çıkın. Her ısırık, bir ziyafet sunuyor.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!--Carousel Slider sonu-->
+
+<div class="card m-md-3">
+    <div class="card-header">
+        Filtreler
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Fiyat Sırala</label>
+                    @Html.DropDownList("sortOrder", new SelectList(new[]
+                             {
+                new { Value = "", Text = "..." },
+                new { Value = "Fiyat Artan", Text = "Artandan Azalana" },
+                new { Value = "Fiyat Azalan", Text = "Azalandan Artana" },
+                }, "Value", "Text", Model.Sorting), new { @class = "form-control text-black" })
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label ">Kategori</label>
+
+                    @Html.DropDownList("categoryId", new SelectList(Model.Categories, "Id", "Name", Model.CategoryId), new { @class = "form-control text-black" })
+                </div>
+            </div>
+
+            <button type="submit" class="btn my-3" style="background-color: #d9230f; color: white;">
+                Filtrele
+            </button>
+        }
+    </div>
+</div>
+
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col">
+            <div class="card h-100" style="width: 18rem">
+                <img src="@product.ImageUrl" class="card-img-top" alt="..." style="width: 18rem; height: 17rem;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: #d9230f; font-weight:600;">@product.ProductName</h5>
+                    <p class="card-text" style="color: black; font-weight:600;">@product.Price TL</p>
+                    <div class="d-flex align-items-center">
+                        <button type="button" class="btn" style="background-color: orange; color: white;">@product.CategoryName</button>
+                        <span style="margin-left: 10px;"></span> <!-- Boşluk için -->
+                        <form method="post" asp-action="ShoppingCart" asp-controller="Home">
+                            <input type="hidden" name="ProductId" value="@product.Id" />
+                            <custom-tag-button type="submit" button-class="btn btn-success" icon-class="bi bi-cart text-white"></custom-tag-button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i, pageSize = Model.PageSize })">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+

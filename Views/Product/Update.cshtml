@@ -1,0 +1,63 @@
+﻿@using OnlineRestaurantProject.Models.DTO
+@model CreateOrEditProductViewModel
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Ürün güncelleme sayfası
+    </div>
+    <div class="card-body">
+
+        @using (Html.BeginForm("Update", "Product", FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.Product.Id)
+            <div class="text-danger" asp-validation-summary="All">
+            </div>
+            <div class="my-3">
+                <div class="form-group">
+                    <label asp-for="Product.ProductName">Ürün Adı</label>
+                    <input type="text" class="form-control" asp-for="Product.ProductName" placeholder="Ürün Adını giriniz...">
+                </div>
+            </div>
+
+            <div class="my-3">
+                <div class="form-group">
+                    <label asp-for="Product.Price">Fiyatı</label>
+                    <input type="number" class="form-control" asp-for="Product.Price">
+                </div>
+            </div>
+
+            <div class="my-3">
+                <div class="form-group">
+                    <label asp-for="Product.CategoryId">Kategori</label>
+                    @Html.DropDownListFor(x => x.Product.CategoryId, new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control", })
+                </div>
+            </div>
+
+            <div class="my-3">
+                <div class="form-group">
+                    <label asp-for="Product.ImageUrl">Resim Adresi</label>
+                    <input type="text" class="form-control" asp-for="Product.ImageUrl" placeholder="Resim adresini giriniz">
+                </div>
+            </div>
+
+            <div class="my-3">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" asp-for="Categories">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success my-3">
+                Güncelle
+            </button>
+        }
+    </div>
+</div>
+
+
+
+

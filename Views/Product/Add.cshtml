@@ -1,0 +1,66 @@
+﻿@using OnlineRestaurantProject.Extensions
+@using OnlineRestaurantProject.Models.DTO
+@model CreateOrEditProductViewModel
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Ürün ekleme sayfası
+    </div>
+    <div class="card-body">
+
+        @using (Html.BeginForm("Add", "Product", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="my-3">
+                <div class="form-group">
+                    @* <label class="form-label">Ürün Adı</label> *@
+                    @Html.MyTextBoxFor(x => x.Product.ProductName, "Ürün Adı", null, "#ffff", new { @class = "form-control", placeHolder = "Ürün adını giriniz" })
+                    @* @Html.TextBoxFor(x => x.Product.ProductName, "", new { @class = "form-control", placeHolder = "Ürün adını giriniz" }) *@
+                    @Html.ValidationMessageFor(x => x.Product.ProductName, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="my-3">
+                <div class="form-group">
+                    <label class="form-label">Fiyatı</label>
+                    @Html.TextBoxFor(x => x.Product.Price, "", new { @class = "form-control", placeHolder = "Ürün fiyatını giriniz" })
+                    @Html.ValidationMessageFor(x => x.Product.Price, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="my-3">
+                <div class="form-group">
+                <label class="form-label">Kategori</label>
+                    @Html.DropDownListFor(x => x.Product.CategoryId, new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control", })
+                </div>
+            </div>
+
+            <div class="my-3">
+                <div class="form-group">
+                    <label class="form-label">Resim Adresi</label>
+                    @Html.TextBoxFor(x => x.Product.ImageUrl, new { @class = "form-control", placeholder = "Resim adresini giriniz" })
+                    @Html.ValidationMessageFor(x => x.Product.ImageUrl, null, new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="my-3">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" asp-for="Categories">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success my-3">
+                Kaydet
+            </button>
+        }
+    </div>
+</div>
+
+
+
