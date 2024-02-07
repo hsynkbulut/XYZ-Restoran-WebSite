@@ -16,61 +16,14 @@ Bu proje, XYZ Restoranýna ait bir web uygulamasýný ASP.NET Core MVC kullanarak g
 - **Ürün Ekleme/Çýkarma**: Admin, menüdeki ürünleri yönetebilir.
 
 ## Ekran Görüntüleri
-<table>
-  <tr>
-    <td>1</td>
-  <tr>
-    <td><img src="Ekran-Goruntuleri/1.jpg" width="900" height="430"></td> 
- </table>
-
-<table>
-  <tr>
-    <td>2</td>
-  <tr>
-    <td><img src="Ekran-Goruntuleri/2.jpg" width="900" height="430"></td>
- </table>
-
- <table>
-  <tr>
-    <td>3</td>
-  <tr>
-    <td><img src="Ekran-Goruntuleri/3.jpg" width="900" height="430"></td>
- </table>
-
- <table>
-  <tr>
-    <td>4</td>
-  <tr>
-    <td><img src="Ekran-Goruntuleri/4.jpg" width="900" height="430"></td>
- </table>
-
- <table>
-  <tr>
-    <td>5</td>
-  <tr>
-    <td><img src="Ekran-Goruntuleri/5.jpg" width="900" height="430"></td>
- </table>
-
- <table>
-  <tr>
-    <td>6</td>
-  <tr>
-    <td><img src="Ekran-Goruntuleri/6.jpg" width="900" height="430"></td>
- </table>
-
- <table>
-  <tr>
-    <td>7</td>
-  <tr>
-    <td><img src="Ekran-Goruntuleri/7.jpg" width="900" height="430"></td>
- </table>
-
- <table>
-  <tr>
-    <td>8</td>
-  <tr>
-    <td><img src="Ekran-Goruntuleri/8.jpg" width="900" height="430"></td>
- </table>
+![Ekran Görüntüsü 1](https://github.com/hsynkbulut/XYZ-Restoran-WebSite/blob/master/Ekran-Goruntuleri/1.jpg)
+![Ekran Görüntüsü 2](https://github.com/hsynkbulut/XYZ-Restoran-WebSite/blob/master/Ekran-Goruntuleri/2.jpg)
+![Ekran Görüntüsü 3](https://github.com/hsynkbulut/XYZ-Restoran-WebSite/blob/master/Ekran-Goruntuleri/3.jpg)
+![Ekran Görüntüsü 4](https://github.com/hsynkbulut/XYZ-Restoran-WebSite/blob/master/Ekran-Goruntuleri/4.jpg)
+![Ekran Görüntüsü 5](https://github.com/hsynkbulut/XYZ-Restoran-WebSite/blob/master/Ekran-Goruntuleri/5.jpg)
+![Ekran Görüntüsü 6](https://github.com/hsynkbulut/XYZ-Restoran-WebSite/blob/master/Ekran-Goruntuleri/6.jpg)
+![Ekran Görüntüsü 7](https://github.com/hsynkbulut/XYZ-Restoran-WebSite/blob/master/Ekran-Goruntuleri/7.jpg)
+![Ekran Görüntüsü 8](https://github.com/hsynkbulut/XYZ-Restoran-WebSite/blob/master/Ekran-Goruntuleri/8.jpg)
 
 ---
 
